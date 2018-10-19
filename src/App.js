@@ -6,8 +6,6 @@ import Content from "./Content/Content";
 
 class App extends Component {
   render() {
-    console.log("routing");
-    console.log(this);
     return (
       <div className="decisionMaker">
         <Router>
