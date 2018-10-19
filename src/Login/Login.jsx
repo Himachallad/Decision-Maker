@@ -14,7 +14,7 @@ import "./Login.css";
 import mailValidator from "../common/MailValidator";
 import passwordValidator from "../common/PasswordValidator";
 import Content from "../Content/Content";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -44,7 +44,6 @@ class Login extends React.Component {
 
     if (mailValidator(mailId) && passwordValidator(password)) {
       console.log("Save data");
-      console.log(this.props.history.replace("/content"));
     } else {
       this.setState({
         mailId: "",
