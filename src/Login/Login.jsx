@@ -44,6 +44,7 @@ class Login extends React.Component {
 
     if (mailValidator(mailId) && passwordValidator(password)) {
       console.log("Save data");
+      this.props.history.replace("/content");
     } else {
       this.setState({
         mailId: "",
