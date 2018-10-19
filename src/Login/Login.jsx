@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import "./Login.css";
 import mailValidator from "../common/MailValidator";
 import passwordValidator from "../common/PasswordValidator";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -36,7 +35,8 @@ class Login extends React.Component {
     });
   };
 
-  verifyForm = props => {
+  verifyForm = elem => {
+    console.log("verified");
     const mailId = this.state.mailId;
     const password = this.state.password;
 
@@ -96,7 +96,6 @@ class Login extends React.Component {
                   label="Remember me"
                 />
                 <Button
-                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
