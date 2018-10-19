@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import "./Login.css";
 import mailValidator from "../common/MailValidator";
 import passwordValidator from "../common/PasswordValidator";
+import Content from "../Content/Content";
+import { Route } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -42,6 +44,7 @@ class Login extends React.Component {
 
     if (mailValidator(mailId) && passwordValidator(password)) {
       console.log("Save data");
+      this.props.history.replace("/content");
     } else {
       this.setState({
         mailId: "",
@@ -51,7 +54,10 @@ class Login extends React.Component {
   };
 
   render() {
-    if (this.props.location.pathname !== "/login") {
+    if (
+      this.props.location.pathname !== "/login" &&
+      this.props.location.pathname !== "/content"
+    ) {
       this.props.history.replace("/login");
     }
 
@@ -59,6 +65,7 @@ class Login extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <div className="loginContainer">
+          <Route path="/content" component={Content} />
           <Paper className="login">
             <div className="loginForm">
               <Avatar className="lockIcon">
