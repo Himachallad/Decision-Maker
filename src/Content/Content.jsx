@@ -5,19 +5,19 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  Button,
-  Backdrop
+  Button
 } from "@material-ui/core";
 import "../Content/Content.css";
 import logo from "../images/Logo.png";
-import Pros from "./Pros";
+import StatementWithFactor from "./StatementWithFactor";
 
 class Content extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: true,
-      nextPage: false
+      pageTitle: "Pros",
+      dataSubmitted: false
     };
   }
 
@@ -27,6 +27,20 @@ class Content extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
+  };
+
+  saveAndContinue = () => {
+    console.log("Data saved for" + this.state.pageTitle);
+    this.setState({
+      pageTitle: "Cons"
+    });
+  };
+
+  done = () => {
+    console.log("Data saved for" + this.state.pageTitle);
+    this.setState({
+      dataSubmitted: true
+    });
   };
 
   render() {
@@ -46,9 +60,20 @@ class Content extends React.Component {
           </DialogActions>
         </Dialog>
         <div className="header">
-          <img className="logo" src={logo} />
+          <img alt="logo" className="logo" src={logo} />
         </div>
-        <div className="body">{this.state.nextPage ? "" : <Pros />}</div>
+        <div className="body">
+          {this.state.dataSubmitted ? (
+            "Thank you, Algo for decision in construction"
+          ) : (
+            <StatementWithFactor
+              pageTitle={this.state.pageTitle}
+              saveAndContinue={this.saveAndContinue}
+              done={this.done}
+            />
+          )}
+          }
+        </div>
       </div>
     );
   }
