@@ -1,0 +1,17 @@
+.content .header {
+  height: 50px;
+  background: #b1eeee;
+}
+
+.content .logo {
+  width: 120px;
+  border-radius: 20px;
+  position: relative;
+  left: 12px;
+  bottom: 35px;
+}
+
+.content .body {
+  height: 560px;
+  background: #e5eaea;
+}
