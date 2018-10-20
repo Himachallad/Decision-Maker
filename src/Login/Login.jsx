@@ -21,7 +21,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       mailId: "",
-      password: ""
+      password: "",
+      verified: false
     };
   }
 
@@ -37,7 +38,7 @@ class Login extends React.Component {
     });
   };
 
-  verifyForm = elem => {
+  verifyForm = () => {
     console.log("verified");
     const mailId = this.state.mailId;
     const password = this.state.password;
@@ -45,6 +46,9 @@ class Login extends React.Component {
     if (mailValidator(mailId) && passwordValidator(password)) {
       console.log("Save data");
       this.props.history.replace("/content");
+      this.setState({
+        verified: true
+      });
     } else {
       this.setState({
         mailId: "",
@@ -65,6 +69,7 @@ class Login extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <div className="loginContainer">
+          {this.state.verified}
           <Route path="/content" component={Content} />
           <Paper className="login">
             <div className="loginForm">
