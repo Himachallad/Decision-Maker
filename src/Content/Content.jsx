@@ -32,15 +32,10 @@ class Content extends React.Component {
   render() {
     return (
       <div className="content">
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Make your move"}</DialogTitle>
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle>{"Make your move"}</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <DialogContentText>
               Having trouble, we will help you decide.
             </DialogContentText>
           </DialogContent>

@@ -5,6 +5,10 @@ export default class Pros extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    document.title = "Pros";
+  }
+
   render() {
     return <div>Pros</div>;
   }
