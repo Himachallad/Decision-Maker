@@ -72,7 +72,6 @@ class Content extends React.Component {
               done={this.done}
             />
           )}
-          }
         </div>
       </div>
     );

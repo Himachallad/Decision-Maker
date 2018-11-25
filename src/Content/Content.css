@@ -25,6 +25,11 @@
   top: 10%;
 }
 
+.pros .formHeader {
+  position: relative;   
+  left: 198px;
+}
+
 .content .prosForm {
   position: relative;
   left: 200px;
