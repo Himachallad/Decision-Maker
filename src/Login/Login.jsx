@@ -1,71 +1,92 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import LockIcon from "@material-ui/icons/LockOutlined";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import "./Login.css";
-import mailValidator from "../common/MailValidator";
-import passwordValidator from "../common/PasswordValidator";
-import Content from "../Content/Content";
-import { Route } from "react-router-dom";
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import './Login.css';
+import mailValidator from '../common/MailValidator';
+import passwordValidator from '../common/PasswordValidator';
+import Content from '../Content/Content';
+import { Route } from 'react-router-dom';
+import axios from 'axios';
+import NewUser from './NewUser';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mailId: "",
-      password: "",
-      verified: false
+      mailId: '',
+      password: '',
+      verified: false,
+      newUser: false,
     };
   }
 
-  setPassword = elem => {
+  setPassword = (elem) => {
     this.setState({
-      password: elem.target.value
+      password: elem.target.value,
     });
   };
 
-  setMailId = elem => {
+  setMailId = (elem) => {
     this.setState({
-      mailId: elem.target.value
+      mailId: elem.target.value,
+    });
+  };
+
+  async tryLogin(data) {
+    var loginDone = false;
+    await axios
+      .post('http://localhost:8080/login', data)
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          loginDone = true;
+        }
+      })
+      .catch((error, res) => {
+        alert('Something bad happened');
+      });
+    return loginDone;
+  }
+
+  addNewUser = () => {
+    this.setState({
+      newUser: true,
     });
   };
 
   verifyForm = () => {
-    console.log("verified");
-    const mailId = this.state.mailId;
-    const password = this.state.password;
-
-    if (mailValidator(mailId) && passwordValidator(password)) {
-      console.log("Save data");
-      this.props.history.replace("/content");
-      this.setState({
-        verified: true
-      });
-    } else {
-      this.setState({
-        mailId: "",
-        password: ""
-      });
-    }
+    const { mailId, password } = this.state;
+    const data = {
+      email: mailId,
+      receivedPassword: password,
+    };
+    this.tryLogin(data).then((loginSucess) => {
+      if (mailValidator(mailId) && passwordValidator(password) && loginSucess) {
+        this.props.history.replace('/content');
+        this.setState({
+          verified: true,
+        });
+      }
+    });
   };
 
   render() {
     if (
-      this.props.location.pathname !== "/login" &&
-      this.props.location.pathname !== "/content"
+      this.props.location.pathname !== '/login' &&
+      this.props.location.pathname !== '/content'
     ) {
-      this.props.history.replace("/login");
+      this.props.history.replace('/login');
     }
 
-    return (
+    return !this.state.newUser ? (
       <React.Fragment>
         <CssBaseline />
         <div className="loginContainer">
@@ -116,11 +137,22 @@ class Login extends React.Component {
                 >
                   Sign in
                 </Button>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className="submit"
+                  onClick={this.addNewUser}
+                >
+                  Add new user
+                </Button>
               </form>
             </div>
           </Paper>
         </div>
       </React.Fragment>
+    ) : (
+      <NewUser />
     );
   }
 }

@@ -26,4 +26,9 @@
 
 .loginContainer .submit {
   background: #2196f3;
+  margin-top: 10px;
+}
+
+.decisionMaker {
+  height: 100%;
 }

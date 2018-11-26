@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
-import Login from "./Login/Login";
-import Content from "./Content/Content";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
+import Login from './Login/Login';
+import Content from './Content/Content';
 
 class App extends Component {
   render() {
