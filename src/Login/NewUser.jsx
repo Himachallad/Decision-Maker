@@ -64,7 +64,11 @@ export default class NewUser extends React.Component {
         email: mailId,
         receivedPassword: password,
       };
-      this.submitNewUser(data);
+      this.submitNewUser(data).then((resolve) => {
+        if (resolve) {
+          this.props.signUpComplete();
+        }
+      });
     }
   };
 

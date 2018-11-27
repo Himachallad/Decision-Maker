@@ -17,6 +17,10 @@ import Content from '../Content/Content';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 import NewUser from './NewUser';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
 
 class Login extends React.Component {
   constructor(props) {
@@ -39,6 +43,35 @@ class Login extends React.Component {
     this.setState({
       mailId: elem.target.value,
     });
+  };
+
+  signUpComplete = () => {
+    // var promise = new Promise((resolve) => {
+    //   this.setState(
+    //     {
+    //       newUser: false,
+    //     },
+    //     () => {
+    //       resolve('success');
+    //     },
+    //   );
+    // });
+    // promise.then((resolve) => {
+    //   if (resolve === 'success')
+    //     NotificationManager.success('Succesfully added new user', '');
+    // });
+    this.setState(
+      {
+        newUser: false,
+      },
+      async () => {
+        await NotificationManager.success(
+          'Succesfully added new user',
+          '',
+          2000,
+        );
+      },
+    );
   };
 
   async tryLogin(data) {
@@ -88,6 +121,7 @@ class Login extends React.Component {
 
     return !this.state.newUser ? (
       <React.Fragment>
+        <NotificationContainer />
         <CssBaseline />
         <div className="loginContainer">
           {this.state.verified}
@@ -152,7 +186,7 @@ class Login extends React.Component {
         </div>
       </React.Fragment>
     ) : (
-      <NewUser />
+      <NewUser signUpComplete={this.signUpComplete} />
     );
   }
 }
