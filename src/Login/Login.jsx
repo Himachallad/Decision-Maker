@@ -16,11 +16,12 @@ import passwordValidator from '../common/PasswordValidator';
 import Content from '../Content/Content';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
-import NewUser from './NewUser';
+import SignUp from './SignUp';
 import {
   NotificationContainer,
   NotificationManager,
 } from 'react-notifications';
+import { Redirect } from 'react-router';
 
 class Login extends React.Component {
   constructor(props) {
@@ -186,7 +187,8 @@ class Login extends React.Component {
         </div>
       </React.Fragment>
     ) : (
-      <NewUser signUpComplete={this.signUpComplete} />
+      <Redirect to="/signup" component={SignUp} />
+      // <SignUp signUpComplete={this.signUpComplete} />
     );
   }
 }
