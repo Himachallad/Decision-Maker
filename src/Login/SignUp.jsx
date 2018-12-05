@@ -1,8 +1,9 @@
 import React from 'react';
-import './NewUser.css';
+import './SignUp.css';
 import axios from 'axios';
+import mailValidator from '../common/MailValidator';
 
-export default class NewUser extends React.Component {
+export default class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +11,10 @@ export default class NewUser extends React.Component {
       mailId: '',
       phone: '',
       password: '',
+      validName: false,
+      validMail: false,
+      validPhone: false,
+      validPassword: false,
     };
   }
 
@@ -17,6 +22,7 @@ export default class NewUser extends React.Component {
     var name = elem.target.value;
     this.setState({
       name,
+      validName: name ? true : false,
     });
   };
 
@@ -24,13 +30,16 @@ export default class NewUser extends React.Component {
     var mailId = elem.target.value;
     this.setState({
       mailId,
+      validMail: mailValidator(mailId),
     });
   };
 
   changePhoneNo = (elem) => {
     var phone = elem.target.value;
+
     this.setState({
       phone,
+      validPhone: !isNaN(phone) && phone > 0,
     });
   };
 
@@ -38,6 +47,7 @@ export default class NewUser extends React.Component {
     var password = elem.target.value;
     this.setState({
       password,
+      validPassword: password ? true : false,
     });
   };
 
@@ -56,9 +66,16 @@ export default class NewUser extends React.Component {
     return submitDone;
   }
 
+  validateSignUp = (name, mailId, phone) => {
+    if (name && mailValidator(mailId) && !isNaN(phone) && phone > 0) {
+      return true;
+    }
+    return false;
+  };
+
   submit = () => {
     var { name, mailId, phone, password } = this.state;
-    if (name && mailId && phone) {
+    if (this.validateSignUp(name, mailId, phone)) {
       var data = {
         name,
         email: mailId,
@@ -73,6 +90,7 @@ export default class NewUser extends React.Component {
   };
 
   render() {
+    var { validMail, validName, validPassword, validPhone } = this.state;
     return (
       <div className="addNewUser">
         <div className="addUserHeader"> Sign up</div>
@@ -83,24 +101,46 @@ export default class NewUser extends React.Component {
             type="text"
             onChange={this.changeName}
           />
-          <div className="mail">Mail Id</div>
+          {validName ? (
+            <div class="green">Looks good!</div>
+          ) : (
+            <div class="red">Looks bad!</div>
+          )}
+          <div className="mail" required={true}>
+            Mail Id
+          </div>
           <input
             className="addNewUserInput"
-            type="text"
+            type="email"
             onChange={this.changeMailId}
           />
+          {validMail ? (
+            <div class="green">Looks good!</div>
+          ) : (
+            <div class="red">Looks bad!</div>
+          )}
           <div className="phone">Phone no</div>
           <input
             className="addNewUserInput"
             type="text"
             onChange={this.changePhoneNo}
           />
+          {validPhone ? (
+            <div class="green">Looks good!</div>
+          ) : (
+            <div class="red">Looks bad!</div>
+          )}
           <div className="password">Password</div>
           <input
             className="addNewUserInput"
             type="password"
             onChange={this.changePassword}
           />
+          {validPassword ? (
+            <div class="green">Looks good!</div>
+          ) : (
+            <div class="red">Looks bad!</div>
+          )}
           <div className="submitWrapper flex">
             <div className="submitButton flex" onClick={this.submit}>
               Submit
