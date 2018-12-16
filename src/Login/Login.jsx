@@ -22,6 +22,7 @@ import {
   NotificationManager,
 } from 'react-notifications';
 import { Redirect } from 'react-router';
+import { getToken, setToken } from '../Authentication/AuthService';
 
 class Login extends React.Component {
   constructor(props) {
@@ -47,20 +48,6 @@ class Login extends React.Component {
   };
 
   signUpComplete = () => {
-    // var promise = new Promise((resolve) => {
-    //   this.setState(
-    //     {
-    //       newUser: false,
-    //     },
-    //     () => {
-    //       resolve('success');
-    //     },
-    //   );
-    // });
-    // promise.then((resolve) => {
-    //   if (resolve === 'success')
-    //     NotificationManager.success('Succesfully added new user', '');
-    // });
     this.setState(
       {
         newUser: false,
@@ -81,6 +68,7 @@ class Login extends React.Component {
       .post('http://localhost:8080/login', data)
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
+          setToken(res.data);
           loginDone = true;
         }
       })
