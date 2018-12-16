@@ -1,10 +1,20 @@
 .content .header {
   height: 50px;
   background: #b1eeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .decisionMaker {
   overflow: hidden;
+}
+
+.content .logoutButton {
+  cursor: pointer;
+  bottom: 90px;
+  right: 10px;
+  position: relative;
 }
 
 .content .logo {
@@ -26,7 +36,7 @@
 }
 
 .pros .formHeader {
-  position: relative;   
+  position: relative;
   left: 198px;
 }
 

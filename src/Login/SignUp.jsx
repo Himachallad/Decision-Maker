@@ -147,7 +147,7 @@ export default class SignUp extends React.Component {
           {validPassword === 'true' ? (
             <div class="green">Looks good!</div>
           ) : (
-            this.invalidCheck(validPassword) 
+            this.invalidCheck(validPassword)
           )}
           <div className="submitWrapper flex">
             <div className="submitButton flex" onClick={this.submit}>

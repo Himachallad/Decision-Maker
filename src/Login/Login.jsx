@@ -21,8 +21,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from 'react-notifications';
-import { Redirect } from 'react-router';
-import { getToken, setToken } from '../Authentication/AuthService';
+import { setToken } from '../Authentication/AuthService';
 
 class Login extends React.Component {
   constructor(props) {
@@ -175,8 +174,7 @@ class Login extends React.Component {
         </div>
       </React.Fragment>
     ) : (
-      <Redirect to="/signup" component={SignUp} />
-      // <SignUp signUpComplete={this.signUpComplete} />
+      <SignUp signUpComplete={this.signUpComplete} />
     );
   }
 }
