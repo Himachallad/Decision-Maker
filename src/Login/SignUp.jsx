@@ -11,10 +11,10 @@ export default class SignUp extends React.Component {
       mailId: '',
       phone: '',
       password: '',
-      validName: false,
-      validMail: false,
-      validPhone: false,
-      validPassword: false,
+      validName: '',
+      validMail: '',
+      validPhone: '',
+      validPassword: '',
     };
   }
 
@@ -22,7 +22,7 @@ export default class SignUp extends React.Component {
     var name = elem.target.value;
     this.setState({
       name,
-      validName: name ? true : false,
+      validName: name ? 'true' : 'false',
     });
   };
 
@@ -30,7 +30,7 @@ export default class SignUp extends React.Component {
     var mailId = elem.target.value;
     this.setState({
       mailId,
-      validMail: mailValidator(mailId),
+      validMail: mailValidator(mailId) ? 'true' : 'false',
     });
   };
 
@@ -39,7 +39,7 @@ export default class SignUp extends React.Component {
 
     this.setState({
       phone,
-      validPhone: !isNaN(phone) && phone > 0,
+      validPhone: !isNaN(phone) && phone > 0 ? 'true' : 'false',
     });
   };
 
@@ -47,7 +47,7 @@ export default class SignUp extends React.Component {
     var password = elem.target.value;
     this.setState({
       password,
-      validPassword: password ? true : false,
+      validPassword: password ? 'true' : 'false',
     });
   };
 
@@ -89,6 +89,14 @@ export default class SignUp extends React.Component {
     }
   };
 
+  invalidCheck = (data) => {
+    if (data === 'false') {
+      return <div class="red">Looks bad!</div>;
+    } else {
+      return <div />;
+    }
+  };
+
   render() {
     var { validMail, validName, validPassword, validPhone } = this.state;
     return (
@@ -101,10 +109,10 @@ export default class SignUp extends React.Component {
             type="text"
             onChange={this.changeName}
           />
-          {validName ? (
+          {validName === 'true' ? (
             <div class="green">Looks good!</div>
           ) : (
-            <div class="red">Looks bad!</div>
+            this.invalidCheck(validName)
           )}
           <div className="mail" required={true}>
             Mail Id
@@ -114,10 +122,10 @@ export default class SignUp extends React.Component {
             type="email"
             onChange={this.changeMailId}
           />
-          {validMail ? (
+          {validMail === 'true' ? (
             <div class="green">Looks good!</div>
           ) : (
-            <div class="red">Looks bad!</div>
+            this.invalidCheck(validMail)
           )}
           <div className="phone">Phone no</div>
           <input
@@ -125,10 +133,10 @@ export default class SignUp extends React.Component {
             type="text"
             onChange={this.changePhoneNo}
           />
-          {validPhone ? (
+          {validPhone === 'true' ? (
             <div class="green">Looks good!</div>
           ) : (
-            <div class="red">Looks bad!</div>
+            this.invalidCheck(validPhone)
           )}
           <div className="password">Password</div>
           <input
@@ -136,10 +144,10 @@ export default class SignUp extends React.Component {
             type="password"
             onChange={this.changePassword}
           />
-          {validPassword ? (
+          {validPassword === 'true' ? (
             <div class="green">Looks good!</div>
           ) : (
-            <div class="red">Looks bad!</div>
+            this.invalidCheck(validPassword) 
           )}
           <div className="submitWrapper flex">
             <div className="submitButton flex" onClick={this.submit}>
