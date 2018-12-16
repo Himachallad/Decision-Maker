@@ -7,7 +7,6 @@ export const getToken = () => {
 };
 
 export const setToken = (token) => {
-  console.log('token is' + token);
   if (token !== null && token !== undefined) {
     sessionStorage.setItem('token', token);
   }
