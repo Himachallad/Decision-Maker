@@ -8,7 +8,6 @@ import {
 import './App.css';
 import Login from './Login/Login';
 import Content from './Content/Content';
-import SignUp from './Login/SignUp';
 import { getToken, logout } from './Authentication/AuthService';
 
 const PrivateRoute = ({ component: Page, ...rest }) => {
@@ -46,7 +45,6 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={Login} />
             <PrivateRoute path="/content" component={Content} />
-            <Route path="/signup" component={SignUp} />
             <PrivateRoute path="/logout" component={Login} />
             <PrivateRoute component={Login} />
           </Switch>
