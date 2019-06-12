@@ -1,0 +1,35 @@
+.loginContainer {
+  position: relative;
+  width: 30%;
+  text-align: center;
+  left: 35%;
+  margin-top: 8%;
+}
+
+.loginContainer .lockIcon {
+  position: relative;
+  left: 43%;
+  background: yellowgreen;
+}
+
+.loginContainer .loginForm {
+  position: relative;
+  width: 86%;
+  left: 7%;
+}
+
+.loginContainer .login {
+  position: relative;
+  height: 100%;
+  padding: 35px;
+}
+
+.loginContainer .submit {
+  background: #2196f3;
+  margin-top: 10px;
+}
+
+.decisionMaker {
+  height: 100%;
+}
+

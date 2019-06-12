@@ -1,0 +1,88 @@
+html,
+body {
+  height: 100%;
+}
+.addNewUser {
+  height: 100%;
+}
+.addUserForm {
+  position: relative;
+  top: 20%;
+  left: 40%;
+  width: 300px;
+  height: 350px;
+}
+
+.addUserHeader {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  left: 40%;
+  top: 15%;
+}
+
+.addNewUser .submitButton {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  border-radius: 4px;
+  background: #ff751a;
+  color: #ffffff;
+  height: 40px;
+}
+
+.addNewUser .submitButton:hover {
+  background: orange;
+}
+
+.addNewUser .submitButton:active {
+  background: #ff751a;
+}
+
+.addNewUser .name {
+  font-family: Poppins;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.addNewUser .mail {
+  font-family: Poppins;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.addNewUser .phone {
+  font-family: Poppins;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.addNewUser .password {
+  font-family: Poppins;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.addNewUser .submitWrapper {
+  margin: 10px 0 0 0;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.addNewUserInput {
+  height: 30px;
+  width: 300px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  outline: none;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

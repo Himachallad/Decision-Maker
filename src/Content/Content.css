@@ -1,0 +1,60 @@
+.content .header {
+  height: 50px;
+  background: #b1eeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.decisionMaker {
+  overflow: hidden;
+}
+
+.content .logoutButton {
+  cursor: pointer;
+  bottom: 90px;
+  right: 10px;
+  position: relative;
+}
+
+.content .logo {
+  width: 120px;
+  border-radius: 20px;
+  position: relative;
+  left: 12px;
+  bottom: 35px;
+}
+
+.content .body {
+  height: 560px;
+  background: #e5eaea;
+}
+
+.content .pros {
+  position: relative;
+  top: 10%;
+}
+
+.pros .formHeader {
+  position: relative;
+  left: 198px;
+}
+
+.content .prosForm {
+  position: relative;
+  left: 200px;
+}
+
+.content .statement {
+  width: 450px;
+}
+
+.content .prosForm .factor {
+  margin-left: 100px;
+}
+
+.content .nextPage {
+  position: relative;
+  left: 90%;
+  bottom: 36px;
+}
